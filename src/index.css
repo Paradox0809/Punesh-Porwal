@@ -1,0 +1,60 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+  
+  --color-terminal-bg: #000000;
+  --color-terminal-panel: #111111;
+  --color-terminal-border: #333333;
+  --color-terminal-text: #E0E0E0;
+  --color-terminal-dim: #888888;
+  --color-terminal-accent: #FFB800; /* Bloomberg Orange */
+  --color-terminal-green: #00FF00;
+  --color-terminal-red: #FF3B30;
+  --color-terminal-blue: #007AFF;
+}
+
+@layer base {
+  body {
+    @apply bg-terminal-bg text-terminal-text font-mono antialiased;
+  }
+}
+
+@layer components {
+  .terminal-card {
+    @apply bg-terminal-panel border border-terminal-border p-4 rounded-sm;
+  }
+  
+  .terminal-input {
+    @apply bg-black border border-terminal-border text-terminal-text px-4 py-2 focus:outline-none focus:border-terminal-accent transition-colors;
+  }
+
+  .terminal-btn {
+    @apply px-4 py-2 border border-terminal-border hover:bg-terminal-border transition-colors disabled:opacity-50;
+  }
+
+  .terminal-btn-primary {
+    @apply px-4 py-2 border border-terminal-accent bg-terminal-accent text-black font-bold transition-colors disabled:opacity-50;
+  }
+  
+  .terminal-btn-primary:hover {
+    @apply opacity-90;
+  }
+}
+
+/* Print styles for PDF export */
+@media print {
+  body {
+    background: white !important;
+    color: black !important;
+  }
+  .no-print {
+    display: none !important;
+  }
+  .terminal-card {
+    border: 1px solid #ccc !important;
+    background: white !important;
+    color: black !important;
+  }
+}
